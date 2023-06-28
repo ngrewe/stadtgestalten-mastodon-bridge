@@ -14,9 +14,6 @@
 	"dependencies": {
 		"dayjs": "^1.11.8",
 		"escape-string-regexp": "^5.0.0",
-		"events": "npm:events-browserify@latest",
-		"http": "npm:http-browserify@1.7.0",
-		"https": "npm:https-browserify@1.0.0",
 		"masto": "^5.11.3",
 		"node-ical": "^0.16.1"
 	}
