@@ -1,0 +1,11 @@
+name = "stadtgestalten-mastodon-bridge"
+main = "src/worker.ts"
+compatibility_date = "2023-06-25"
+# compatibility_flags = [ "nodejs_compat" ]
+node_compat = true
+minify = true
+# Cron Triggers
+# Docs: https://developers.cloudflare.com/workers/platform/triggers/cron-triggers/
+# Configuration: https://developers.cloudflare.com/workers/wrangler/configuration/#triggers
+[triggers]
+crons = ["0 1/4 * * *"] # * * * * * = run every minute
