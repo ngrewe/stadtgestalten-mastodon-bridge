@@ -16,11 +16,11 @@ import { postEvents } from './masto';
 import { getEventsSinceLast } from './stadtgestalten';
 export interface Env {
 	STADTGESTALTEN_GROUP_SLUG: string;
-	STADTGESTALTEN_URL: string;
+	STADTGESTALTEN_URL?: string;
 	MASTODON_URL: string;
 	MASTODON_TOKEN: string;
 	MASTODON_ACCOUNT: string;
-	MASTODON_HASHTAGS: string;
+	MASTODON_HASHTAGS?: string;
 }
 
 // Fix to get node-ical working

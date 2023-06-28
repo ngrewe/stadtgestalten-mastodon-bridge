@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { stadtGestaltenUrl } from './util';
 dayjs.locale('de');
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -31,7 +32,7 @@ const UID_PATTERN = /(?<eventId>\d+)@/;
 
 export const postEvents = async (env: Env, events: EventList) => {
 	const client = await getClient(env);
-	const contentPattern = new RegExp(`${escapeStringRegexp(env.STADTGESTALTEN_URL + '/stadt/content/')}(?<eventId>\\d+)`);
+	const contentPattern = new RegExp(`${escapeStringRegexp(stadtGestaltenUrl(env) + '/stadt/content/')}(?<eventId>\\d+)`);
 	const ownId = await client.v1.accounts.lookup({ acct: env.MASTODON_ACCOUNT });
 	const statuses = client.v1.accounts.listStatuses(ownId.id, { excludeReblogs: true, excludeReplies: true });
 	const bridgedIds = new Set<string>();
@@ -61,7 +62,7 @@ export const postEvents = async (env: Env, events: EventList) => {
 					.join(' ')
 			: '';
 
-		const statusText = `${event.summary} am ${startDate}${hashTags}\n\n${env.STADTGESTALTEN_URL}/stadt/content/${res.groups.eventId}`;
+		const statusText = `${event.summary} am ${startDate}${hashTags}\n\n${stadtGestaltenUrl(env)}/stadt/content/${res.groups.eventId}`;
 		await client.v1.statuses.create({
 			status: statusText,
 			language: 'de',

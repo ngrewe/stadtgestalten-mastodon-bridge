@@ -1,11 +1,12 @@
 import { async as ICal, VEvent } from 'node-ical';
 
 import type { Env } from './worker';
+import { stadtGestaltenUrl } from './util';
 
 export type EventList = VEvent[];
 
 export const getEventsSinceLast: (env: Env) => Promise<EventList> = async (env: Env) => {
-	const baseUrl = `${env.STADTGESTALTEN_URL}/${env.STADTGESTALTEN_GROUP_SLUG}/events/public.ics`;
+	const baseUrl = `${stadtGestaltenUrl(env)}/${env.STADTGESTALTEN_GROUP_SLUG}/events/public.ics`;
 	const resp = await fetch(baseUrl);
 	if (!resp.ok) {
 		throw new Error(`Failed to fetch ${baseUrl}: ${resp.statusText} (${resp.status})`);
