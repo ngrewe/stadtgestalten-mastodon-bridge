@@ -40,7 +40,7 @@ npx wrangler secret put MASTODON_ACCOUNT
 npx wrangler secret put MASTODON_HASHTAGS
 ```
 
-## Local Testing
+## Local Development
 Start the dev server:
 ```sh
 npx wrangler dev --test-scheduled
