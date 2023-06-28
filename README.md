@@ -1,7 +1,8 @@
 # Stadtgestalten/Grouprise Events to Mastodon Bridge
 
 This bridge takes events published by a group from a [Grouprise](https://grouprise.org/) instance
-and publishes them to a Mastodon feed. It runs on a cron schedule in Cloudflare workers.
+and publishes them to a Mastodon feed. It runs on a cron schedule in Cloudflare workers. A free
+Cloudflare account is sufficient to run this.
 
 ## Configuration
 
@@ -39,7 +40,14 @@ npx wrangler secret put MASTODON_ACCOUNT
 npx wrangler secret put MASTODON_HASHTAGS
 ```
 
-## Known limitations
+## Local Testing
+Start the dev server:
+```sh
+npx wrangler dev --test-scheduled
+```
+And visit `http://127.0.0.1:8787/__scheduled?cron=*+*+*+*+*` in the browser.
+
+## Known Limitations
 
 The worker currently scans all toots in the target account to find out which 
 events it has already published. This is not scalable for accounts with a
